@@ -6,12 +6,10 @@ Licensed under
 A back end for an e-commerce site. 
 ## Table of Contents
 [Installation](#install)
-[Usage](#usage)
 [License](#license)
 [Questions](#questions)
 ## Install
 Express.js, MySQL, Sequelize, dotenv 
-## Usage
 
 ## License
 ISC
