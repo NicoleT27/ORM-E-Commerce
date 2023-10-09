@@ -29,12 +29,15 @@ router.get('/:id', (req, res) => {
         through: ProductTag,
       },
     ],
-  }).then((tag) => {
+   }).then((tag) => {
     res.json(tag);
-  });
+  }).catch((error) => {    
+    console.log(error);
+  })
   // find a single tag by its `id`
   // be sure to include its associated Product data
 });
+
 
 router.post('/', (req, res) => {
   // create a new tag
