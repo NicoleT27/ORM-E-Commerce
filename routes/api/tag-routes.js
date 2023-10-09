@@ -6,14 +6,19 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 router.get('/', (req, res) => {
   Tag.findAll({
-    include:[
+    include: [
       {
         model: Product,
-        through:ProductTag,
+        through: ProductTag,
       },
     ],
   })
-  .then((tags) => res.json(tags));
+    .then((tag) => {
+      res.json(tag);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   // find all tags
   // be sure to include its associated Product data
 });
@@ -51,7 +56,11 @@ router.put('/:id', (req, res) => {
     where: {
       id: req.params.id,
     },
-  }).then((tag) => res.status(200).json(tag));
+     }).then((tag) => {
+    res.status(200).json(tag);
+  }).catch((error) => {    
+    console.log(error);
+  })
 });
 
 router.delete('/:id', (req, res) => {
@@ -59,7 +68,11 @@ router.delete('/:id', (req, res) => {
     where: {
       id: req.params.id,
     },
-  }).then((tag) => res.status(200).json(tag));
+  }).then((tag) => {
+  res.status(200).json(tag);
+   }).catch((error) => {    
+    console.log(error);
+  })
   // delete on tag by its `id` value
 });
 

@@ -7,7 +7,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // get all products
 router.get('/', (req, res) => {
   Product.findAll({
-  include: [
+    include: [
       Category,
       {
         model: Tag,
@@ -15,7 +15,12 @@ router.get('/', (req, res) => {
       },
     ],
   })
-  .then(products => res.json(products));
+    .then((products) => {
+      res.json(products);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   // find all products
   // be sure to include its associated Category and Tag data
 });
@@ -33,8 +38,12 @@ router.get('/:id', (req, res) => {
          through: ProductTag,
        },
      ],
-   }).then((products) => {res.json(products);
-   });
+   }).then((products) => {
+    res.json(products);
+     }).catch((error) => {    
+    console.log(error);
+  })
+ 
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
 });
@@ -123,8 +132,12 @@ router.delete('/:id', (req, res) => {
      where: {
        id: req.params.id,
      },
-   }).then((products) => {res.json(products);
-   });
+   }).then((products) => {
+    res.json(products);
+     }).catch((error) => {    
+    console.log(error);
+  })
+ 
   // delete one product by its `id` value
 });
 
