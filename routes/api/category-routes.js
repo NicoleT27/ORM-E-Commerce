@@ -24,35 +24,32 @@ router.get('/:id', (req, res) => {
      },
      include: [Product],
    })
-   .then((category) => {
-    res.json(category);
-     }).catch((error) => {    
-    console.log(error);
-  })
+     .then((categories) => {
+       res.json(categories);
+     })
+     .catch((error) => {
+       console.log(error);
+     });
    
   // find one category by its `id` value
   // be sure to include its associated Products
 });
 
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
   Category.create(req.body)
-    .then((category) => {
-      res.json(category);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  // create a new category
+    .then((category) => res.status(200).json(category))
+    .catch((err) => res.status(400).json(err));
 });
 
-router.put('/:id', (req, res) => {
+
+router.put("/:id", (req, res) => {
   Category.update(req.body, {
     where: {
       id: req.params.id,
     },
   })
-    .then((category) => {
-      res.json(category);
+    .then((categories) => {
+      res.json(categories);
     })
     .catch((error) => {
       console.log(error);
@@ -66,8 +63,8 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-    .then((category) => {
-      res.json(category);
+    .then((categories) => {
+      res.json(categories);
     })
     .catch((error) => {
       console.log(error);
